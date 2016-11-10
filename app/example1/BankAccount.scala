@@ -21,7 +21,6 @@ class BankAccount  extends Actor{
       sender ! BankAccount.Done
     case _ =>
       sender ! BankAccount.Failed
-
   }
 }
 
