@@ -9,7 +9,6 @@ import akka.event.LoggingReceive
  */
 class BankAccount  extends Actor{
 
-
   var balance = BigInt(0)
 
   def receive = LoggingReceive{
