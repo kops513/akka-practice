@@ -18,8 +18,10 @@ class BankAccount  extends Actor{
     case BankAccount.WithDraw(amount) if amount <= balance =>
       balance -= amount
       sender ! BankAccount.Done
+    case BankAccount.WithDraw(amount) if amount > balance =>
+      sender ! BankAccount.Failed(BankAccount.withDrawAmountFailedMsg)
     case _ =>
-      sender ! BankAccount.Failed
+      sender ! BankAccount.Failed(BankAccount.failedMsg)
   }
 }
 
@@ -34,6 +36,9 @@ object BankAccount {
 
   case object Done
 
-  case object Failed
+  case class Failed(msg: String)
+
+  val withDrawAmountFailedMsg = "withdraw amount should be less than account balance"
+  val failedMsg = "Bank Account can only deposit or withdraw amount"
 
 }

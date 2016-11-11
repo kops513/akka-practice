@@ -37,6 +37,6 @@ abstract class Reaper extends Actor{
 class BatchReaper extends Reaper{
   //Derivation need to implement this method. Its the hook
   override def allSoulsReaped(): Unit = {
-    context.system.shutdown()
+    context.system.terminate()
   }
 }
